@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php declare(strict_types = 1);
 
 namespace PHPStan\Command\ErrorFormatter;
 
@@ -19,7 +19,8 @@ class JUnitErrorFormatter implements ErrorFormatter
 	public function formatErrors(
 		AnalysisResult $analysisResult,
 		OutputStyle $style
-	): int {
+	): int
+	{
 		$returnCode = 1;
 		if (!$analysisResult->hasErrors()) {
 			$returnCode = 0;
@@ -32,17 +33,17 @@ class JUnitErrorFormatter implements ErrorFormatter
 			$out .= sprintf(
 				'<testcase name="%1$s:%2$s" file="%1$s" assertions="1"><failure type="static_analysis"><![CDATA[%3$s]]></failure></testcase>',
 				$this->escape($fileSpecificError->getFile()),
-				$this->escape((string)$fileSpecificError->getLine()),
+				$this->escape((string) $fileSpecificError->getLine()),
 				$this->escape($fileSpecificError->getMessage())
 			);
 		}
 
-		$style->write('<?xml version="1.0" encoding="UTF-8"?>'."\n");
-		$style->write('<testsuites>'."\n");
+		$style->write('<?xml version="1.0" encoding="UTF-8"?>' . "\n");
+		$style->write('<testsuites>' . "\n");
 		if ($out !== '') {
 			$style->write($out);
 		}
-		$style->write('</testsuites>'."\n");
+		$style->write('</testsuites>' . "\n");
 
 		return $returnCode;
 	}
