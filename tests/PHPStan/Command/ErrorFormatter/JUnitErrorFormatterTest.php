@@ -21,7 +21,7 @@ class JUnitErrorFormatterTest extends \PHPStan\Testing\TestCase
 	 */
 	protected function setUp(): void
 	{
-		$this->formatter = new JUnitCheckstyleErrorFormatter();
+		$this->formatter = new JUnitErrorFormatter();
 	}
 
 	/**
